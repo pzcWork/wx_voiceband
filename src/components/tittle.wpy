@@ -1,0 +1,86 @@
+<style lang="less">
+  .tittle{
+    background-color: #5a6cf6;
+    height: 96rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+  }
+  .tittle > view:nth-child(2){
+    // color: #fff;
+    font-size: 44rpx;
+    text-align: center;
+    line-height: 96rpx;
+    letter-spacing: 4rpx;
+  }
+  .tittle_helper{
+    font-size: 22rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+<template>
+  <view class="tittle">
+    <image
+      style="width: 72rpx; height: 36rpx;"
+      mode=""
+      src="../image/TEE_logo.png"
+    />
+    <view>
+      {{tittleText}}
+    </view>
+    <view class="tittle_helper">
+      <image
+        style="width: 48rpx; height: 48rpx;"
+        mode=""
+        src="../image/TEE_helper.png"
+      />
+      <view>
+        小T助手
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import { INCREMENT, DECREMENT } from '../store/types/counter'
+  import { asyncInc } from '../store/actions'
+
+  @connect({
+    stateNum (state) {
+      return state.counter.num
+    },
+    asyncNum (state) {
+      return state.counter.asyncNum
+    }
+  }, {
+    incNum: INCREMENT,
+    decNum: DECREMENT,
+    asyncInc
+  })
+
+  export default class Tittle extends wepy.component {
+    props = {
+    }
+
+    data = {
+        tittleText: '魔声体验中心'
+    }
+    events = {
+    }
+
+    watch = {
+    //   num (curVal, oldVal) {
+    //     console.log(`旧值：${oldVal}，新值：${curVal}`)
+    //   }
+    }
+
+    methods = {
+      
+    }
+  }
+</script>

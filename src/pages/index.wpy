@@ -1,0 +1,877 @@
+<style lang="less">
+.container{
+  background-color: #F6F6F6;
+  height: 100%;
+  overflow: hidden;
+}
+.main_content{
+  width: 100%;
+}
+.textarea_com{
+  width: calc(100% - 60rpx);
+  height: 220rpx;
+  font-size: 28rpx;
+  color: #777777;
+  background-color: #fff;
+  padding: 40rpx 30rpx;
+}
+.tab_groups{
+  background-color: #fff;
+  height: 96rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50rpx;
+  margin-bottom: 10rpx;
+}
+.tab_groups > view{
+  font-size: 38rpx;
+  width: 170rpx;
+  height: 90rpx;
+  line-height: 96rpx;
+  text-align: center;
+}
+.checkStyle{
+  border-bottom: 4rpx solid #5a6cf6;
+  color: #5a6cf6;
+}
+.clear{
+  background-color: #fff;
+  width: 100%;
+  height: 88rpx;
+  margin-top: 4rpx;
+  font-size: 32rpx;
+  line-height: 88rpx;
+}
+.clear{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.clear_act{
+  margin-left: 50rpx;
+}
+.clear_stat{
+  color: #777;
+  margin-right: 50rpx;
+}
+.clear_uppic{
+  display: flex;
+  justify-content: space-around;
+  color: #5a6cf6;
+}
+.clear_uppic > view:nth-child(2){
+  margin: 0 20rpx;
+}
+.teller_con{
+  width: 100%;
+  // height: 120rpx;
+  background-color: #fff;
+  margin-top: 14rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+.teller_tittle{
+  font-size: 36rpx;
+  margin: 8rpx 0 6rpx 0;
+}
+.teller_groups{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  line-height: 70rpx;
+}
+.teller_groups > view{
+  // width: 160rpx;
+  // height: 50rpx;
+  padding: 10rpx;
+  line-height: 32rpx;
+  text-align: center;
+  // border: 2rpx solid #000;
+  color: #000;
+  font-size: 26rpx;
+}
+// .teller_groups > view:nth-child(2){
+//   margin: 0 -60rpx;
+// }
+.tellerStyle{
+  // background-color: #5a6cf6;
+  border: 2rpx solid #5a6cf6 !important;
+  color: #5a6cf6 !important;
+}
+.voice_groups{
+  background-color: #fff;
+  width: 100%;
+  // height: 280rpx;
+  margin-top: 14rpx;
+  font-size: 26rpx;
+}
+.voice_groups > view{
+  display: flex;
+  justify-content: space-between
+}
+.voice_groups > view > text{
+  line-height: 68rpx;
+}
+.voice_groups > view > text:first-child{
+  padding-left: 40rpx
+}
+.voice_groups > view > text:nth-child(3){
+  padding-right: 40rpx
+}
+.comon_slider{
+  width: 85%;
+}
+.theme_groups{
+  width: 100%;
+  height: 100rpx;
+  margin: 8rpx 0;
+  font-size: 32rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  line-height: 50rpx;
+}
+.theme_comon{
+  text-align: center;
+}
+.theme_comon > view:nth-child(2){
+  font-size: 28rpx;
+  color: #777;
+}
+.submitbtn{
+  width: 600rpx;
+  height: 80rpx;
+  background-color: #5a6cf6;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin:0 auto;
+  left:0;
+  right:0;
+  bottom: 20rpx;
+}
+.button-hover{
+  background-color: #409eff !important;
+  color: #fff;
+}
+.submit_text{
+  margin: 0 20rpx;
+}
+.submit_icon{
+  // width: 22px;
+  // height: 22px;
+  // background-color: #fff;
+  width:0;
+  height:0;
+  border-width:16rpx 0 18rpx 18rpx;
+  border-style:solid;
+  border-color:transparent transparent transparent #fff;/*透明 透明 透明 灰*/
+  border-radius: 4rpx;
+}
+.submit_stop{
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 6rpx;
+  background-color: #fff;
+}
+.footer_text{
+  height: 200rpx;
+  width: 100%;
+  font-size: 28rpx;
+  color: #777;
+  text-align: center;
+  padding-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.footer_text > text{
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.footer_share{
+  font-size: 26rpx;
+  width: 160rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background-color: #5a6cf6;
+  border-radius: 8rpx;
+  color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+.record_btn{
+  width: 160rpx;
+  height: 70rpx;
+  background-color: #fff;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}
+</style>
+<template>
+  <view class="container">
+      <tittle></tittle>
+      <view class="main_content">
+        <view class="tab_groups">
+          <view bindtap="switchTab(1)" class="{{checkStyle === 1?'checkStyle':''}}">文字输入</view>
+          <view bindtap="switchTab(2)" class="{{checkStyle === 2?'checkStyle':''}}">语音输入</view>
+          <view bindtap="switchTab(3)" class="{{checkStyle === 3?'checkStyle':''}}">图片输入</view>
+        </view>
+        <!-- 文字输入 -->
+        <textarea
+        wx:if="{{checkStyle === 1}}"
+        class="textarea_com"
+        placeholder="请输入"
+        name="textarea"
+        maxlength="1024"
+        bindinput="_input"
+        value="{{value}}" />
+        <!-- <p
+        wx:for="{{ value }}"
+        wx:for-index="index"
+        wx:for-item="item"
+        >{{item}}</p> -->
+        <!-- 语音输入 -->
+        <textarea
+        wx:if="{{checkStyle === 2}}"
+        class="textarea_com"
+        placeholder="按住话筒录入语音，最长60s"
+        name="textarea"
+        maxlength="1024"
+        bindinput="_input" 
+        value="{{value}}" />
+        <!-- 图片输入 -->
+        <textarea
+        wx:if="{{checkStyle === 3}}"
+        class="textarea_com"
+        placeholder="图片解析中"
+        name="textarea"
+        maxlength="1024"
+        bindinput="_input"
+        value="{{value}}" />
+        <!-- 清除按钮和统计字数 -->
+        <view class="clear">
+          <view class="clear_act" bindtap="clearAll">清除</view>
+          <view class="clear_uppic" wx:if="{{checkStyle === 3}}">
+            <view bindtap="chooseImg">上传图片</view>
+          </view>
+          <view class="clear_record" wx:if="{{checkStyle === 2}}">
+            <button class="record_btn" bindlongpress="longPress" bindtouchend="touchend">按住录音</button>
+          </view>
+          <view class="clear_stat">{{valueLen}}/1024</view>
+        </view>
+        <!-- 选择播音员 -->
+        <view class="teller_con">
+          <view class="teller_tittle">播音员</view>
+          <view class="teller_groups">
+            <view
+            wx:for="{{ tellerArr }}"
+            wx:for-index="index"
+            wx:for-item="item"
+            wx:key="1"
+            bindtap="checkTeller({{index}})"
+            class="{{index === tellerStyle?'tellerStyle':''}} teller_xf"
+            >
+            <image
+              style="width: 60rpx; height: 60rpx;"
+              mode=""
+              src="{{'data:image/png;base64,'+item.image}}"
+            />
+            <view>{{ item.name }}</view> 
+            <view>{{ item.language == "mandarin"?"普通话":(item.language == "english"?"英语":item.language) }}</view>
+            </view>
+            <!-- <view class="{{tellerStyle === 2?'tellerStyle':''}} teller_bd" bindtap="checkTeller(2)">百度</view>
+            <view class="{{tellerStyle === 3?'tellerStyle':''}} teller_tee" bindtap="checkTeller(3)">TEE</view> -->
+          </view>
+        </view>
+        <!-- 音量、语速、语调、音乐设置 -->
+        <view class="voice_groups">
+          <view class="voice_gol">
+            <text class="voice_goltitle">音量</text>
+            <view class="voice_golchoice comon_slider">
+              <slider
+              bindchange="volchoice"
+              step="5"
+              value="{{volValue}}"
+              block-size="18"
+              show-value="true"
+              activeColor="#5a6cf6" />
+            </view>
+          </view>
+          <view class="voice_speed">
+            <text class="voice_speedtitle">语速</text>
+            <view class="voice_speedchoice comon_slider">
+              <slider
+              bindchange="speedchoice"
+              step="5"
+              value="{{speedValue}}"
+              block-size="18"
+              show-value="true"
+              activeColor="#5a6cf6" />
+            </view>
+          </view>
+          <!-- 语调暂时不支持选择 -->
+          <!-- <view class="voice_tone">
+            <text class="voice_tonetitle">语调</text>
+            <view class="voice_tonechoice comon_slider">
+              <slider
+              bindchange="tonechoice"
+              step="5"
+              value="{{toneValue}}"
+              block-size="18"
+              show-value="true"
+              activeColor="#5a6cf6" />
+            </view>
+          </view> -->
+          <view class="voice_music">
+            <text class="voice_musictitle">音乐</text>
+            <view class="voice_musicchoice comon_slider">
+              <slider
+              bindchange="musicchoice"
+              step="5"
+              value="{{musicValue}}"
+              block-size="18"
+              show-value="true"
+              activeColor="#5a6cf6" />
+            </view>
+          </view>
+        </view>
+        <!-- 主题选择 -->
+        <view class="theme_groups">
+          <view class="theme_music theme_comon" bindtap="getbackMusic">
+            <view>音乐</view>
+            <view>{{ backMusicRe }}</view>
+          </view>
+          <!-- 方言暂不可选 -->
+          <!-- <view class="theme_lang theme_comon" bindtap="themeLang">
+            <view>方言</view>
+            <view>普通话</view>
+          </view> -->
+          <view class="theme_mood theme_comon" bindtap="themeMood">
+            <view>心情</view>
+            <view>愉悦</view>
+          </view>
+          <view class="theme_type theme_comon" bindtap="themeType">
+            <view>类型</view>
+            <view>诗歌</view>
+          </view>
+        </view>
+        <button bindtap="play" class="submitbtn" wx:if="{{btnstatus === 0}}">
+          <view class="submit_icon">
+          </view>
+          <text class="submit_text">播放</text>
+        </button>
+        <button bindtap="play" class="submitbtn" wx:if="{{btnstatus === 1}}">
+          <view class="submit_stop">
+          </view>
+          <text class="submit_text">停止</text>
+        </button>
+      </view>
+      <view class="footer_text">
+        <text>了解更多，请访问www.tee.com</text>
+        <!-- <button class="footer_share" open-type="share">分享给好友</button> -->
+      </view>
+      <canvas canvas-id="canvas" style="width:{{cWidth}}px;height:{{cHeight}}px;position: absolute;left:-1000px;top:-1000px;"></canvas>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Tittle from '../components/tittle'
+  const innerAudioContext = wx.createInnerAudioContext()
+  const recorderManager = wx.getRecorderManager()
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '魔声'
+    }
+    components = {
+      tittle: Tittle
+    }
+
+    data = {
+      tempFilePath:'',
+      cWidth: 0,
+      cHeight: 0,
+      speedValue: 50,
+      volValue: 50,
+      toneValue: 50,
+      musicValue: 50,
+      tellerStyle: 1,
+      valueLen: 113,
+      checkStyle: 1,
+      currentNoteLen: 0,
+      btnstatus: 0,
+      backMusic: [],
+      backMusicRe: "悠扬婉转",
+      popMusic: [],
+      poptapIndex: 0,
+      tellerArr: [],
+      value:["TEE集团（TEE Group）专注于人工智能技术领域，自主研发基于深度学习的机器视觉系统，拥有多项AI知识产权专利，综合性能达到国内一流水平。首创分布式AI算力平台，强大的数据处理能力。满足从原始数据到模型产出的一站式服务。"]
+    }
+
+    computed = {
+    }
+
+    methods = {
+      play(e) {
+        this.btnstatus === 0?this.btnstatus=1:this.btnstatus=0
+        // console.log(this.btnstatus)
+        let that = this
+        console.log(that.tellerArr[that.tellerStyle-0].id)
+        if(that.btnstatus === 1){
+          wx.showLoading({
+            mask: true,
+            title: '合成中，请稍等'
+          })
+          wx.request({
+            url: 'https://manage.tee.com/tee/openai/tts/synthetic',
+            method: 'POST',
+            data: {
+              userId: "123", // uid暂时任意
+              content: that.value.toString(), // textarea内的输入内容
+              voice: that.tellerArr[that.tellerStyle-0].id, // 播音员
+              background: {
+                templateId: that.backMusic[that.poptapIndex].templateId, // 选取的背景音乐
+                volume: that.musicValue/100 //背景音乐音量
+              },
+              dialect: that.tellerArr[that.tellerStyle-0].language, // 方言，播音员里
+              dataType: "url",
+              extension: "mp3",
+              volume: that.volValue/100, // 音量
+              speed: that.speedValue/100 // 语速
+            },
+            success: function(res){
+              console.log('2222222222')
+              console.log(res.data.DATA.filePath)
+              // wx.playVoice({
+              //   filePath: res.data.DATA.filePath,
+              //   success(){
+              //     console.log('bofa')
+              //   },
+              //   fail(res){
+              //     console.log(res)
+              //   },
+              //   complete() { }
+              // })
+              // console.log('开始播放')
+              wx.hideLoading({
+                title: '加载中'
+              })
+              if(that.btnstatus === 1){
+                innerAudioContext.autoplay = true
+                innerAudioContext.src = res.data.DATA.filePath
+                innerAudioContext.onPlay(() => {
+                  console.log('正在播放')
+                })
+                innerAudioContext.onError((res) => {
+                  console.log('播放失败')
+                  console.log(res)
+                })
+                innerAudioContext.onEnded((res) => {
+                  console.log('播放完成')
+                  // that.btnstatus = 0
+                  that.setData({
+                    btnstatus: 0
+                  })
+                  that.btnstatus = 0
+                  // console.log(that.btnstatus)
+                })
+              }else if(that.btnstatus === 0){
+                wx.showLoading({
+                  mask: true,
+                  title: '系统繁忙，请稍后重试'
+                })
+                innerAudioContext.stop()
+              }
+              
+            }
+          })
+        }else if(that.btnstatus === 0){
+          // console.log('停止')
+          // console.log(innerAudioContext)
+          innerAudioContext.stop()
+        }
+        
+      },
+      _input(event) {
+        let value = event.detail.value
+        // console.log(event.detail.value.length)
+        this.value = value
+        // 输入文本长度转为number
+        this.valueLen = event.detail.value.length -0
+      },
+      switchTab(val) {
+        // 转为number
+        this.checkStyle = val - 0
+        if(this.checkStyle === 1){
+          this.value = ["TEE集团（TEE Group）专注于人工智能技术领域，自主研发基于深度学习的机器视觉系统，拥有多项AI知识产权专利，综合性能达到国内一流水平。首创分布式AI算力平台，强大的数据处理能力。满足从原始数据到模型产出的一站式服务。"]
+          this.valueLen = 113
+        }else if(this.checkStyle === 2){
+          this.value = ''
+          this.valueLen = 0
+        }else if(this.checkStyle === 3){
+          this.value = ''
+          this.valueLen = 0
+        }
+        // console.log(val)
+        // console.log(e.currentTarget)
+      },
+      checkTeller(val) {
+        // console.log(val)
+        this.tellerStyle = val - 0
+      },
+      clearAll() {
+        this.value = ''
+        this.valueLen = 0
+      },
+      _inputVoice(event) {
+        console.log("语音输入")
+      },
+      _inputPic(enent) {
+        console.log("图片输入")
+      },
+      volchoice(event){
+        this.volValue = event.detail.value
+        console.log(this.volValue)
+      },
+      speedchoice(event){
+        this.speedValue = event.detail.value
+        console.log(this.speedValue)
+      },
+      tonechoice(event){
+        this.toneValue = event.detail.value
+        console.log(this.toneValue)
+      },
+      musicchoice(event){
+        this.musicValue = event.detail.value
+        console.log(this.musicValue)
+      },
+      getbackMusic() {
+        let that = this
+        wx.showActionSheet({
+          itemList: that.popMusic,
+          success(res) {
+            // console.log(res)
+            that.poptapIndex = res.tapIndex
+            that.backMusicRe = that.popMusic[that.poptapIndex]
+            that.setData({
+              backMusicRe: that.popMusic[that.poptapIndex]
+            })
+          },
+          fail(res) {
+            console.log(res.errMsg)
+          }
+        })
+      },
+      // themeLang() {
+      //   wx.showActionSheet({
+      //     itemList: ['普通话'],
+      //     success(res) {
+      //       console.log(res.tapIndex)
+      //     },
+      //     fail(res) {
+      //       console.log(res.errMsg)
+      //     }
+      //   })
+      // },
+      themeMood() {
+        wx.showActionSheet({
+          itemList: ['愉悦'],
+          success(res) {
+            console.log(res.tapIndex)
+          },
+          fail(res) {
+            console.log(res.errMsg)
+          }
+        })
+      },
+      themeType() {
+        wx.showActionSheet({
+          itemList: ['诗歌'],
+          success(res) {
+            console.log(res.tapIndex)
+          },
+          fail(res) {
+            console.log(res.errMsg)
+          }
+        })
+      },
+      chooseImg() {
+        // console.log('选择相片')
+        let that = this
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success(res) {
+            wx.showLoading({
+              mask: true,
+              title: '处理中，请稍等'
+            })
+            // console.log(res)
+            let size = res.tempFiles[0].size
+            // tempFilePath可以作为img标签的src属性显示图片
+            that.tempFilePath = res.tempFilePaths[0]
+            const fs = wx.getFileSystemManager()
+            if(size < 104857600){
+              // console.log('1111111111111')
+              fs.readFile({
+                filePath: that.tempFilePath,
+                encoding: 'base64',
+                success: function(data) {
+                  let da = data.data
+                  wx.request({
+                    url: 'https://manage.tee.com/tee/openai/tts/webOcr', // 仅为示例，并非真实的接口地址
+                    method: 'POST',
+                    data: {
+                      byteStr: da,
+                      webUrl: ''
+                    },
+                    header: {
+                      'content-type': 'application/json' // 默认值
+                    },
+                    success(res) {
+                      wx.hideLoading({
+                        title: '处理中，请稍等'
+                      })
+                      // console.log(res.data)
+                      that.value = res.data.DATA
+                      that.valueLen = res.data.DATA.toString().length
+                      that.setData({
+                        value: res.data.DATA
+                      })
+                      that.setData({
+                        valueLen: res.data.DATA.toString().length
+                      })
+                    }
+                  })
+                }
+              })
+            }else{
+              return
+              let ratioSize = 1048570/size
+              // console.log(ratioSize)
+              //-----返回选定照片的本地文件路径列表，获取照片信息-----------
+              wx.getImageInfo({
+                  src: that.tempFilePath,  
+                  success: function(res){
+                    // console.log(res)
+                    //---------利用canvas压缩图片--------------
+                    var ratio = 2;
+                    var canvasWidth = res.width //图片原始长宽
+                    var canvasHeight = res.height
+                    while (canvasWidth > 400 || canvasHeight > 400){// 保证宽高在400以内
+                      canvasWidth = Math.trunc(res.width / ratio)
+                      canvasHeight = Math.trunc(res.height / ratio)
+                      ratio++;
+                    }
+                    // console.log(canvasWidth, canvasHeight)
+                    that.setData({
+                      cWidth: canvasWidth,
+                      cHeight: canvasHeight
+                    })
+
+                    //----------绘制图形并取出图片路径--------------
+                    var ctx = wx.createCanvasContext('canvas')
+                    ctx.drawImage(res.path, 0, 0, canvasWidth, canvasHeight)
+                    ctx.draw(false, setTimeout(function(){
+                        wx.canvasToTempFilePath({
+                            canvasId: 'canvas',
+                            destWidth: canvasWidth,
+                            destHeight: canvasHeight,
+                            quality:ratioSize,
+                            success: function (res) {
+                                // console.log(res)//最终图片路径
+                                const picPath = res.tempFilePath
+                                fs.readFile({
+                                  filePath: picPath,
+                                  encoding: 'base64',
+                                  success: function(data) {
+                                    let da = data.data
+                                    // console.log('55555555')
+                                    // console.log(da)
+                                    wx.request({
+                                      url: 'https://manage.tee.com/tee/openai/tts/webOcr', // 仅为示例，并非真实的接口地址
+                                      method: 'POST',
+                                      data: {
+                                        byteStr: da,
+                                        webUrl: ''
+                                      },
+                                      header: {
+                                        'content-type': 'application/json' // 默认值
+                                      },
+                                      success(res) {
+                                        wx.hideLoading({
+                                          title: '处理中，请稍等'
+                                        })
+                                        // console.log(res.data)
+                                        that.value = res.data.DATA[0]
+                                        that.setData({
+                                          value: res.data.DATA[0]
+                                        })
+                                      }
+                                    })
+                                  }
+                                })
+                                
+                                fs.getFileInfo({
+                                  filePath: picPath,
+                                  success: function(data) {
+                                    // console.log(data)
+                                    
+                                  }
+                                })
+
+                            },
+                            fail: function (res) {
+                                // console.log(res.errMsg)
+                            }
+                        })
+                    },100))
+
+                  },
+                  fail: function (res) {
+                      // console.log(res.errMsg)
+                  }
+              })
+            }
+            // console.log(that.tempFilePath)
+            
+            
+          }
+        })
+      },
+      longPress(){
+        // 长按录音事件
+        // console.log('长按事件')
+        recorderManager.start({
+          duration: 60000,//指定录音的时长，单位 ms
+          sampleRate: 48000,//采样率
+          numberOfChannels: 2,//录音通道数
+          encodeBitRate: 320000,//编码码率
+          format: 'mp3'//音频格式，有效值 aac/mp3
+          // frameSize: 50,//指定帧大小，单位 KB
+        })
+        recorderManager.onStart(() => {
+          console.log('recorder start')
+        })
+        //错误回调
+        recorderManager.onError((res) => {
+          console.log(res);
+        })
+      },
+      touchend(){
+        // 长按松开事件
+        console.log('长按松开事件')
+        wx.showLoading({
+          mask: true,
+          title: '处理中，请稍等'
+        })
+        let that = this
+        recorderManager.stop();
+        recorderManager.onStop((res) => {
+          // console.log(res)
+          that.tempFilePath = res.tempFilePath;
+          const tempFilePath = res.tempFilePath
+          const fs = wx.getFileSystemManager()
+          // innerAudioContext.autoplay = true
+          // innerAudioContext.src = tempFilePath
+          // innerAudioContext.onPlay(() => {
+          //     console.log('开始播放')
+          // })
+          
+          fs.readFile({
+            filePath: tempFilePath,
+            encoding: 'base64',
+            success: function(data) {
+              const da = data.data
+              // console.log(da)
+              wx.request({
+                url: 'https://manage.tee.com/tee/openai/tts/speechRecognize',
+                method: 'POST',
+                data: {
+                  byteStr: da,
+                  format: 'wav'
+                },
+                success: function(res) {
+                  wx.hideLoading({
+                    title: '处理中，请稍等'
+                  })
+                  let voiceData = res.data
+                  console.log(res)
+                  // wx.showLoading({
+                  //   mask: true,
+                  //   title: JSON.stringify(res.data.DATA) 拿到数据转成字符串
+                  // })
+                  that.value = voiceData.DATA
+                  that.valueLen = voiceData.DATA.toString().length
+                  that.setData({
+                    value: voiceData.DATA
+                  })
+                  that.setData({
+                    valueLen: voiceData.DATA.toString().length
+                  })
+                }
+              })
+            }
+          })
+        })
+      }
+    }
+    onShareAppMessage(){
+    
+    }
+    onLoad () {
+      wx.showShareMenu({
+        withShareTicket: true,
+        success(){
+          console.log('转发功能')
+        }
+      })
+      let that = this
+      wx.request({
+        url: 'https://manage.tee.com/tee/openai/tts/backgroundList', // 仅为示例，并非真实的接口地址
+        method: 'POST',
+        data: {},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          that.setData({
+            backMusic: res.data.DATA
+          })
+          that.backMusic = res.data.DATA
+          // console.log('22222222222')
+          // console.log(that.backMusic)
+          for(let i=0;i<that.backMusic.length;++i){
+            that.popMusic.push(that.backMusic[i].melody)
+          }
+        }
+      })
+      // 播音员接口
+      wx.request({
+        url: 'https://manage.tee.com/tee/openai/tts/voiceList',
+        method: 'POST',
+        data: {},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          console.log('播音员')
+          console.log(res.data.DATA)
+          that.tellerArr = res.data.DATA
+          that.setData({
+            tellerArr: res.data.DATA
+          })
+        }
+      })
+    }
+  }
+</script>
