@@ -1,0 +1,21 @@
+.tittle {
+  background-color: #5a6cf6;
+  height: 96rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+}
+.tittle > view:nth-child(2) {
+  font-size: 44rpx;
+  text-align: center;
+  line-height: 96rpx;
+  letter-spacing: 4rpx;
+}
+.tittle_helper {
+  font-size: 22rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

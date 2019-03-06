@@ -1,0 +1,128 @@
+
+  <view class="container">
+      
+  <view class="tittle">
+    <image style="width: 72rpx; height: 36rpx;" mode="" src="../image/TEE_logo.png"/>
+    <view>
+      {{$tittle$tittleText}}
+    </view>
+    <view class="tittle_helper">
+      <image style="width: 48rpx; height: 48rpx;" mode="" src="../image/TEE_helper.png"/>
+      <view>
+        小T助手
+      </view>
+    </view>
+  </view>
+
+      <view class="main_content">
+        <view class="tab_groups">
+          <view bindtap="switchTab" class="{{checkStyle === 1?'checkStyle':''}}" data-wpyswitchtab-a="1">文字输入</view>
+          <view bindtap="switchTab" class="{{checkStyle === 2?'checkStyle':''}}" data-wpyswitchtab-a="2">语音输入</view>
+          <view bindtap="switchTab" class="{{checkStyle === 3?'checkStyle':''}}" data-wpyswitchtab-a="3">图片输入</view>
+        </view>
+        <!-- 文字输入 -->
+        <textarea  wx:if="{{checkStyle === 1}}" class="textarea_com" placeholder="请输入" name="textarea" maxlength="1024" bindinput="_input" value="{{value}}"/>
+        <!-- <p
+        wx:for="{{ value }}"
+        wx:for-index="index"
+        wx:for-item="item"
+        >{{item}}</p> -->
+        <!-- 语音输入 -->
+        <textarea  wx:if="{{checkStyle === 2}}" class="textarea_com" placeholder="按住话筒录入语音，最长60s" name="textarea" maxlength="1024" bindinput="_input" value="{{value}}"/>
+        <!-- 图片输入 -->
+        <textarea wx:if="{{checkStyle === 3}}" class="textarea_com" placeholder="图片解析中" name="textarea" maxlength="1024" bindinput="_input" value="{{value}}"/>
+        <!-- 清除按钮和统计字数 -->
+        <view class="clear">
+          <view class="clear_act" bindtap="clearAll">清除</view>
+          <view class="clear_uppic" wx:if="{{checkStyle === 3}}">
+            <view bindtap="chooseImg">上传图片</view>
+          </view>
+          <view class="clear_record" wx:if="{{checkStyle === 2}}">
+            <button class="record_btn" bindlongpress="longPress" bindtouchend="touchend">按住录音</button>
+          </view>
+          <view class="clear_stat">{{valueLen}}/1024</view>
+        </view>
+        <!-- 选择播音员 -->
+        <view class="teller_con">
+          <view class="teller_tittle">播音员</view>
+          <view class="teller_groups">
+            <view wx:for="{{ tellerArr }}" wx:for-index="index" wx:for-item="item" wx:key="1" bindtap="checkTeller" class="{{index === tellerStyle?'tellerStyle':''}} teller_xf" data-wpycheckteller-a="{{index}}">
+            <image style="width: 60rpx; height: 60rpx;" mode="" src="{{'data:image/png;base64,'+item.image}}"/>
+            <view>{{ item.name }}</view> 
+            <view>{{ item.language == "mandarin"?"普通话":(item.language == "english"?"英语":item.language) }}</view>
+            </view>
+            <!-- <view class="{{tellerStyle === 2?'tellerStyle':''}} teller_bd" bindtap="checkTeller(2)">百度</view>
+            <view class="{{tellerStyle === 3?'tellerStyle':''}} teller_tee" bindtap="checkTeller(3)">TEE</view> -->
+          </view>
+        </view>
+        <!-- 音量、语速、语调、音乐设置 -->
+        <view class="voice_groups">
+          <view class="voice_gol">
+            <text class="voice_goltitle">音量</text>
+            <view class="voice_golchoice comon_slider">
+              <slider bindchange="volchoice" step="5" value="{{volValue}}" block-size="18" show-value="true" activeColor="#5a6cf6"/>
+            </view>
+          </view>
+          <view class="voice_speed">
+            <text class="voice_speedtitle">语速</text>
+            <view class="voice_speedchoice comon_slider">
+              <slider bindchange="speedchoice" step="5" value="{{speedValue}}" block-size="18" show-value="true" activeColor="#5a6cf6"/>
+            </view>
+          </view>
+          <!-- 语调暂时不支持选择 -->
+          <!-- <view class="voice_tone">
+            <text class="voice_tonetitle">语调</text>
+            <view class="voice_tonechoice comon_slider">
+              <slider
+              bindchange="tonechoice"
+              step="5"
+              value="{{toneValue}}"
+              block-size="18"
+              show-value="true"
+              activeColor="#5a6cf6" />
+            </view>
+          </view> -->
+          <view class="voice_music">
+            <text class="voice_musictitle">音乐</text>
+            <view class="voice_musicchoice comon_slider">
+              <slider bindchange="musicchoice" step="5" value="{{musicValue}}" block-size="18" show-value="true" activeColor="#5a6cf6"/>
+            </view>
+          </view>
+        </view>
+        <!-- 主题选择 -->
+        <view class="theme_groups">
+          <view class="theme_music theme_comon" bindtap="getbackMusic">
+            <view>音乐</view>
+            <view>{{ backMusicRe }}</view>
+          </view>
+          <!-- 方言暂不可选 -->
+          <!-- <view class="theme_lang theme_comon" bindtap="themeLang">
+            <view>方言</view>
+            <view>普通话</view>
+          </view> -->
+          <view class="theme_mood theme_comon" bindtap="themeMood">
+            <view>心情</view>
+            <view>愉悦</view>
+          </view>
+          <view class="theme_type theme_comon" bindtap="themeType">
+            <view>类型</view>
+            <view>诗歌</view>
+          </view>
+        </view>
+        <button bindtap="play" class="submitbtn" wx:if="{{btnstatus === 0}}">
+          <view class="submit_icon">
+          </view>
+          <text class="submit_text">播放</text>
+        </button>
+        <button bindtap="play" class="submitbtn" wx:if="{{btnstatus === 1}}">
+          <view class="submit_stop">
+          </view>
+          <text class="submit_text">停止</text>
+        </button>
+      </view>
+      <view class="footer_text">
+        <text>了解更多，请访问www.tee.com</text>
+        <!-- <button class="footer_share" open-type="share">分享给好友</button> -->
+      </view>
+      <canvas canvas-id="canvas" style="width:{{cWidth}}px;height:{{cHeight}}px;position: absolute;left:-1000px;top:-1000px;"/>
+  </view>
